@@ -1,0 +1,592 @@
+\documentclass[11pt,a4paper,oneside]{book}
+
+% Encoding and language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% Typography and layout
+\usepackage{microtype} % Helps fix badness issues automatically
+\usepackage{geometry}
+\usepackage{setspace}
+\geometry{
+    a4paper,
+    left=3cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=2.5cm
+}
+
+% Font
+\usepackage{lmodern} % More modern font than Computer Modern
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{15pt}
+
+% Formatting tools
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{url, hyperref, cite}
+\usepackage{enumitem}
+\usepackage{multicol}
+
+% Spacing
+\onehalfspacing
+
+% Chapter formatting
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+
+\titleformat{name=\chapter,numberless}[block]
+  {\normalfont\huge\bfseries\centering}{}{0pt}{\Huge}
+
+% Section and subsection formatting
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{3ex plus 1ex minus .2ex}{2ex plus .2ex}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{2.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Table of contents config
+\renewcommand{\cftchappresnum}{}
+\renewcommand{\cftchapaftersnum}{}
+
+% Fix paragraph spacing to avoid underfull hbox
+\setlength{\parskip}{0.5em} % adds space between paragraphs
+\setlength{\parindent}{1.5em} % indent first line
+
+% Better justification handling
+\microtypesetup{protrusion=true, expansion=true}
+
+% If needed in Scientific Part:
+\usepackage{caption} % for better control of captions
+\usepackage{float} % for precise figure placement
+
+% Title page variables - CUSTOMIZE THESE
+\newcommand{\thesistitle}{[Your Thesis Title Here]}
+\newcommand{\authorname}{[Your Full Name]}
+\newcommand{\authortitles}{} % or other titles
+\newcommand{\studyprogram}{[Your Study Program]}
+\newcommand{\studyfield}{[Your Study Field]}
+\newcommand{\workplace}{[Institute Name], [Faculty Abbreviation], [University Name]}
+\newcommand{\universityName}{[University full Name]}
+\newcommand{\facultName}{[Faculty full Name]}
+\newcommand{\supervisor}{[Supervisor Title and Name]}
+\newcommand{\additionalsupervisor}{} % Leave empty if none
+\newcommand{\submissiondate}{[Month Year]}
+\newcommand{\evidencenumber}{[Evidence Number]}
+\renewcommand{\bibname}{References} 
+
+
+% (Chapter)
+\titleformat{\chapter}
+  {\normalfont\Huge\bfseries\raggedright} % Размер и стиль
+  {\thechapter\quad}                      % Номер главы (например, "1 ")
+  {0pt}                                   % Расстояние между номером и заголовком
+  {}                                      % Доп. оформление перед заголовком
+
+%  (Section)
+\titleformat{\section}
+  {\normalfont\LARGE\bfseries\raggedright}
+  {\thesection\quad}
+  {0pt}
+  {}
+
+%  (Subsection)
+\titleformat{\subsection}
+  {\normalfont\Large\bfseries\raggedright}
+  {\thesubsection\quad}
+  {0pt}
+  {}
+
+
+
+
+  
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    
+    {\Large [University Name]}\\[0.5cm]
+    {\Large [Faculty Full Name]}\\[1cm]
+    
+    {\large \evidencenumber}\\[2cm]
+    
+    {\large \authorname}\\[0.5cm]
+    
+    {\LARGE \textbf{\thesistitle}}\\[1cm]
+    
+    {\large Bachelor's Thesis}\\[10cm]
+    
+    \vfill
+    
+    \begin{flushleft}
+    \begin{tabular}{ll}
+    Supervisor: & \supervisor \\
+    \ifx\additionalsupervisor\empty\else
+    Additional supervisor: & \additionalsupervisor \\
+    \fi
+    \end{tabular}
+    \end{flushleft}
+    
+    \vspace{1cm}
+    {\large \submissiondate}
+    
+    \vfill
+    
+\end{titlepage}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\centering
+\vspace*{1cm}
+{\Large [University Name]}\\[0.5cm]
+{\Large [Faculty Full Name]}\\[1cm]
+
+{\large \evidencenumber}\\[2cm]
+
+{\large \authorname}\\[0.5cm]
+
+{\LARGE \textbf{\thesistitle}}\\[1cm]
+
+{\large Bachelor's Thesis}\\[1cm]
+
+\vfill
+
+\begin{flushleft}
+\begin{tabular}{ll}
+Study programme: & \studyprogram \\
+Study field: & \studyfield \\
+Workplace: & \workplace \\
+Supervisor: & \supervisor \\
+\ifx\additionalsupervisor\empty\else
+Additional supervisor: & \additionalsupervisor \\
+\fi
+\end{tabular}
+\end{flushleft}
+
+\vfill
+
+{\large \submissiondate}\\[0.5cm]
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Assignment page (to be replaced with official assignment)
+\newpage
+\thispagestyle{empty}
+\begin{center}
+    \vspace*{3cm}
+    {\Large \textbf{ASSIGNMENT}}\\[2cm]
+    
+    {\large Insert the official thesis assignment from the university system here!}\\[1cm]
+    
+\end{center}
+
+% Empty page after assignment
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Declaration page
+\newpage
+\thispagestyle{empty}
+\vspace*{5cm}
+
+I declare that I have prepared this work independently, based on consultations with supervisor and using the referenced literature and materials. I commit to indicating any use of artificial intelligence tools.
+
+\vspace{3cm}
+
+In [City], \rule{3cm}{0.4pt} \hfill \rule{4cm}{0.4pt}\\
+\phantom{In [City], }date \hfill signature\\[0.5cm]
+\hfill \authorname
+
+% Empty page after declaration
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Acknowledgments (optional)
+\newpage
+\thispagestyle{empty}
+\vspace*{3cm}
+\section*{Acknowledgments}
+
+[Optional acknowledgments text here - thank your supervisor, family, colleagues, or anyone who helped with your work]
+
+% Empty page after acknowledgments
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% English annotation
+\newpage
+\thispagestyle{empty}
+
+\begin{flushleft}
+{\large \textbf{Annotation}}\\[0.25cm]
+
+\universityName\\
+\facultName\\[0.5cm]
+
+Degree course: \studyprogram\\
+Author: \authorname\\
+Bachelor's Thesis: \thesistitle\\
+Supervisor: \supervisor\\
+\submissiondate\\[1cm]
+\end{flushleft}
+
+[Write your English annotation here - describe the problem, methodology, main results, and conclusions in approximately 150-200 words]
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Slovak annotation (if applicable)
+\newpage
+\thispagestyle{empty}
+
+\begin{flushleft}
+{\large \textbf{Anotácia}}\\[0.25cm]
+
+\universityName\\
+\facultName\\[0.5cm]
+
+
+Study programme: \studyprogram\\
+Author: \authorname\\
+Bachelor's thesis: \thesistitle\\
+Supervisor: \supervisor\\
+\ifx\additionalsupervisor\empty\else
+Additional supervisor: \additionalsupervisor\\
+\fi
+\submissiondate\\[1cm]
+\end{flushleft}
+
+[Write your annotation in the local language here - describe the problem, methodology, main results, and conclusions in approximately 150-200 words]
+
+\textbf{Note:} The annotation must contain all parts mentioned in the bachelor's thesis guidelines. Maximum length is 1 A4 page (header + approximately 150–200 words) and should provide a brief characterization of the bachelor's project assignment, but primarily the results of the bachelor's project.
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Table of contents
+\newpage
+\setcounter{page}{11} % Adjust based on your front matter pages
+\tableofcontents
+
+% Optional lists (comment if unneeded)
+ \newpage
+ \listoffigures
+ 
+ \newpage
+ \listoftables
+
+% Main content starts here
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Technical Abstract (1 point)
+\chapter*{Technical~Abstract}
+\addcontentsline{toc}{chapter}{Technical Abstract}
+% Technical abstract is a concise summary of the work, typically around 250 words.
+% It can be either structured (e.g., including sections such as purpose, methods, 
+% results, and conclusion) or unstructured. The goal is for the student to learn 
+% how to create a concise technical summary of their work.
+% Maximum: 0,5 page
+
+[Write your technical abstract here - approximately 250 words covering purpose, methods, results, and conclusions in technical language for expert audience]
+
+% Lay Summary (1 point)
+\chapter*{Lay~Summary}
+\addcontentsline{toc}{chapter}{Lay Summary}
+% A lay summary is a brief explanation of a research paper written in simple, 
+% non-technical language. Its purpose is to show student's fluency in communicative 
+% skills to a general audience in a concise manner. Lay summary should have up to 
+% 250 words and is unstructured.
+% Maximum: 0,5 page
+
+[Write your lay summary here - up to 250 words in simple, non-technical language that any educated person could understand, explaining what you did and why it matters]
+
+% Introduction (2 points)
+\chapter{Introduction}
+% Students should outline the problem domain, highlighting its current challenges 
+% and guiding principles, and discuss the interdisciplinary aspects involved.
+% Maximum: 0,5 page
+
+This chapter begins the main part of the thesis. In the introduction, provide an overview of the problem domain, state the motivation for solving the selected problem, and outline the overall intention of your project. Also describe the structure of the rest of the work.
+
+[Expand this section to include:
+- Problem domain overview
+- Current challenges and guiding principles
+- Interdisciplinary aspects
+- Motivation for the work
+- Overall project intention
+- Structure of the thesis]
+
+
+\chapter{Problem Statement and Solution } % (35 points total)
+
+% Problem Statement (3 points)
+\section{Problem~Statement}
+% Students should demonstrate problem understanding in all its complexity and 
+% outline it in a simple and concise manner. To this end, students should select 
+% and apply modern computational analytical tools and techniques.
+% Maximum: ½ page
+
+[Describe the specific problem you are addressing in all its complexity but in a simple and concise manner. Include the computational analytical tools and techniques you will use to analyze and solve the problem.]
+
+% Technical Literature Review (5 points)
+\section{Technical~Literature~Review}
+% Has this problem been tackled by other people / in other domains? Select and 
+% evaluate technical literature and summarize most appropriate solutions, compare 
+% their strengths and limitations.
+% Range: 1-1½ pages
+
+This section should provide:
+\begin{itemize}
+    \item An overview of the current state of solving the given problem known from studied literature (not only information from lectures, textbooks, and catalogs)
+    \item Comparison of similar solutions, their categorization with characteristic attributes, etc., according to the nature of the bachelor's project
+    \item Evaluation of existing solutions with their strengths and limitations
+\end{itemize}
+
+[Expand with detailed literature review covering:
+- Current state of the art in your problem domain
+- Existing solutions and approaches
+- Comparison of different methods
+- Strengths and limitations of each approach
+- Gaps in current solutions that your work addresses]
+
+% Solution Overview (7 points)
+\section{Solution~Overview}
+% Concisely explain problem solution. Students should be able to justify their 
+% choice of techniques used to address the problem at hand, recognizing their 
+% limitation and interdisciplinary reach.
+% Range: 2-3 pages
+
+[Describe your high-level solution approach, methodology, and overall strategy for solving the problem]
+
+[Justify your choice of solution methods, tools, frameworks, algorithms, etc. Explain why these particular techniques are appropriate for your problem and how they compare to alternatives]
+
+
+[Recognize and discuss limitations of your chosen techniques. Describe interdisciplinary aspects of your work and connections to other fields]
+
+% Risk Assessment (2 points)
+\section{Risk~Assessment}
+% Students should recognize risks attached to how they implement their solutions 
+% and offer mitigation strategies.
+% Maximum: up to 1 page
+
+[Identify potential risks in your solution implementation such as:
+- Technical risks (performance, scalability, compatibility)
+- Project risks (time constraints, resource limitations)
+- Operational risks (maintenance, updates, dependencies)
+- Security risks (if applicable)
+For each risk, provide mitigation strategies and contingency plans]
+
+% Experimental Reproducibility and Integration (10 points)
+\section{Experimental~Reproducibility~and~Integration}
+% The solution engineering phase should be conducted with reproducibility and 
+% systems integration in mind and students should describe how they tackled this 
+% aspect in detail.
+% Range: 3 pages
+
+
+% Sustainability and Environmental Impact (5 points)
+\section{Sustainability and Environmental Impact}
+% Students should describe how would they implement measures ensuring sustainability 
+% of their product or service during lifecycle.
+% Range: 1-2 pages
+
+[Describe sustainability measures and environmental impact considerations:
+- Energy efficiency optimizations
+- Resource usage minimization
+- Carbon footprint assessment
+- Sustainable development practices
+- End-of-life considerations
+- Green computing principles
+- Long-term maintenance strategies]
+
+% Employability (2 points)
+\section{Employability}
+% Students should be able to reason why knowledge and skills that they have learned 
+% during bachelor work will help them to secure better position on job market.
+% Maximum: ½ page
+
+[Explain how the knowledge and skills gained during this project will improve your job market position:
+- Technical skills acquired
+- Problem-solving methodologies learned
+- Industry-relevant experience gained
+- Professional practices implemented
+- Transferable skills developed]
+
+% Teamwork, Diversity and Inclusion (2 points)
+\section{Teamwork, Diversity and Inclusion}
+% When domain experts from multiple fields of study are involved in a project, 
+% student should implement processes and describe techniques for sharing tasks 
+% and (understanding) knowledge between different parties. Problems and mitigating 
+% strategies should be described to ensure that the project is finished within the 
+% given time schedule. This part should also involve consideration on diversity 
+% and inclusion matters.
+% Range: ½-1 page
+
+[Describe processes for interdisciplinary collaboration:
+- Knowledge sharing techniques between different expertise areas
+- Task distribution and coordination methods
+- Communication strategies across disciplines
+- Problem identification and mitigation approaches
+- Time management and scheduling considerations
+- Diversity and inclusion practices implemented
+- Lessons learned about collaborative work]
+
+% Conclusions (5 points)
+\chapter{Conclusions}
+% Students should summarize key aspects of their work, considering engineering 
+% and societal impact.
+% Range: 2 pages
+
+[Summarize key aspects of your work including:
+- Main achievements and contributions to the field
+- Technical innovations and improvements
+- Engineering impact and practical applications
+- Societal impact and broader implications
+- Lessons learned during the project
+- Challenges overcome and solutions developed
+- Future work possibilities and research directions
+- Personal and professional growth through the project]
+
+% Resume (ONLY IF YOU choose English thesis)
+\chapter{Resume}
+Každá práca odovzdaná v anglickom jazyku musí obsahovať resumé v slovenskom jazyku v rozsahu spravidla 10 percent rozsahu záverečnej práce. Resumé je v práci uvedené ako posledná časť dokumentu.
+
+
+
+
+
+
+
+
+% Bibliography minimal 30 references and up to 70 allowed
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Scientific Part}
+% Scientific Part (50 points): 3500 words, up to 7 figures, one of two common layouts (abstract, lay abstract, introduction, results,
+% discussion, methods, supplementary material and data) or (abstract, lay abstract, introduction, methods, results, discussion, supplementary
+% material and data). 
+% Students are expected to demonstrate their ability to communicate complex problem solutions effectively to a technical audience. The use of AI-generated content is not allowed in this part.
+
+% Two-column format with smaller font
+\begin{multicols}{2}
+\footnotesize % Smaller but readable font
+
+% Abstract
+\section*{Abstract}
+[Write a technical abstract for the scientific part - approximately 150-200 words summarizing the scientific contribution, methodology, key results, and implications]
+
+% Introduction
+\section{Introduction}
+[Provide scientific background, research questions, hypotheses, and objectives. Set the context for the technical work and explain the scientific significance]
+
+% Related Work
+\section{Related Work}
+[Review relevant scientific literature, compare existing approaches, identify gaps, and position your work within the current research landscape]
+
+% Methods
+\section{Methods}
+[Describe your scientific methodology in detail - experimental design, data collection procedures, analysis techniques, tools used, statistical approaches, validation methods]
+
+% Software Architecture
+\section{Software Architecture}
+[If applicable, describe the technical architecture of your solution - system design, components, algorithms, data structures, performance considerations]
+
+% Results
+\section{Results}
+[Present your findings with appropriate figures, tables, and statistical analysis. Focus on factual presentation of results without interpretation]
+
+% Discussion
+\section{Discussion}
+[Interpret your results, discuss implications, compare with existing work, address limitations, and explain the significance of your findings]
+
+% Conclusion
+\section{Conclusion}
+[Summarize main scientific contributions, practical implications, and suggest future research directions]
+
+\section{References}
+[Include scientific references using proper citation format - this should complement the main bibliography]
+
+\end{multicols}
+
+% Appendices
+\newpage
+\appendix
+\renewcommand{\thepage}{A-\arabic{page}}
+\setcounter{page}{1}
+
+\chapter{Supplementary Material}
+% Include any supplementary materials as required
+% This may include:
+% - Additional figures and tables
+% - Code listings
+% - Detailed experimental data
+% - User manuals
+% - Installation guides
+% - Technical specifications
+% - Extended results
+
+[Include supplementary materials here such as:
+- Extended experimental results
+- Additional technical diagrams
+- Complete code listings
+- User documentation
+- Installation and setup guides
+- Technical specifications
+- Raw data tables]
+
+% List of Figures
+\listoffigures
+
+% List of Tables
+\listoftables
+
+% Additional appendices as needed can be added like:
+\chapter{Technical Documentation}
+[Additional technical documentation, API references, configuration files, etc.]
+
+\chapter{User Guide}
+[If applicable, include user guides, installation instructions, or operation manuals]
+
+\end{document}
