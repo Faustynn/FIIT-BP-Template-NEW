@@ -81,6 +81,7 @@
 \newcommand{\workplace}{[Institute Name], [Faculty Abbreviation], [University Name]}
 \newcommand{\universityName}{[University full Name]}
 \newcommand{\facultName}{[Faculty full Name]}
+\newcommand{\city}{[City Name]}
 \newcommand{\supervisor}{[Supervisor Title and Name]}
 \newcommand{\additionalsupervisor}{} % Leave empty if none
 \newcommand{\submissiondate}{[Month Year]}
@@ -90,10 +91,10 @@
 
 % (Chapter)
 \titleformat{\chapter}
-  {\normalfont\Huge\bfseries\raggedright} % Размер и стиль
-  {\thechapter\quad}                      % Номер главы (например, "1 ")
-  {0pt}                                   % Расстояние между номером и заголовком
-  {}                                      % Доп. оформление перед заголовком
+  {\normalfont\Huge\bfseries\raggedright} % size and style
+  {\thechapter\quad}                      % Chapter number (e.g., "1")
+  {0pt}                                   % Distance between number and heading
+  {}                                      % Additional formatting before the heading
 
 %  (Section)
 \titleformat{\section}
@@ -118,10 +119,9 @@
 % Title page
 \begin{titlepage}
     \centering
-    \vspace*{1cm}
     
-    {\Large [University Name]}\\[0.5cm]
-    {\Large [Faculty Full Name]}\\[1cm]
+    {\Large \universityName}\\[0.5cm]
+    {\Large \facultName}\\[1cm]
     
     {\large \evidencenumber}\\[2cm]
     
@@ -212,7 +212,7 @@ I declare that I have prepared this work independently, based on consultations w
 
 \vspace{3cm}
 
-In [City], \rule{3cm}{0.4pt} \hfill \rule{4cm}{0.4pt}\\
+In \city, \rule{3cm}{0.4pt} \hfill \rule{4cm}{0.4pt}\\
 \phantom{In [City], }date \hfill signature\\[0.5cm]
 \hfill \authorname
 
