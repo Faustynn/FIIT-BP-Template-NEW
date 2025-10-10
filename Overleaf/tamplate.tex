@@ -481,8 +481,6 @@ Každá práca odovzdaná v anglickom jazyku musí obsahovať resumé v slovensk
 
 
 
-
-
 % Bibliography minimal 30 references and up to 70 allowed
 \addcontentsline{toc}{chapter}{\bibname}
 \bibliographystyle{ieeetr}
@@ -506,7 +504,7 @@ Každá práca odovzdaná v anglickom jazyku musí obsahovať resumé v slovensk
 \chapter{Scientific Part}
 % Scientific Part (50 points): 3500 words, up to 7 figures, one of two common layouts (abstract, lay abstract, introduction, results,
 % discussion, methods, supplementary material and data) or (abstract, lay abstract, introduction, methods, results, discussion, supplementary
-% material and data). 
+% material and data).
 % Students are expected to demonstrate their ability to communicate complex problem solutions effectively to a technical audience. The use of AI-generated content is not allowed in this part.
 
 % Two-column format with smaller font
@@ -567,6 +565,8 @@ Každá práca odovzdaná v anglickom jazyku musí obsahovať resumé v slovensk
 % - Technical specifications
 % - Extended results
 
+Attention: This section must be in your thesis
+
 [Include supplementary materials here such as:
 - Extended experimental results
 - Additional technical diagrams
@@ -576,17 +576,36 @@ Každá práca odovzdaná v anglickom jazyku musí obsahovať resumé v slovensk
 - Technical specifications
 - Raw data tables]
 
-% List of Figures
+% List of Figures (must be included if figures are present)
 \listoffigures
 
-% List of Tables
+% List of Tables (must be included if tables are present)
 \listoftables
 
 % Additional appendices as needed can be added like:
 \chapter{Technical Documentation}
 [Additional technical documentation, API references, configuration files, etc.]
+\renewcommand{\thepage}{B-\arabic{page}}
+\setcounter{page}{1}
 
+
+% Not necessary but if applicable
 \chapter{User Guide}
 [If applicable, include user guides, installation instructions, or operation manuals]
+\renewcommand{\thepage}{C-\arabic{page}}
+\setcounter{page}{1}
+
+
+% Attention Work plan and Content of the electronic media you MUST include ONLY if you have BP1+BP2 in ZS
+\chapter{Work plan}
+[for BP1+BP2]
+\renewcommand{\thepage}{D-\arabic{page}}
+\setcounter{page}{1}
+
+\chapter{Content of the electronic media}
+[for BP1+BP2]
+\renewcommand{\thepage}{E-\arabic{page}}
+\setcounter{page}{1}
+
 
 \end{document}
