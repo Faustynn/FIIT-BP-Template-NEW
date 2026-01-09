@@ -1,0 +1,557 @@
+\documentclass[14pt,a4paper,oneside]{book}
+
+% Encoding and language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{threeparttable}
+
+\usepackage{longtable}
+\usepackage{xurl}     
+\usepackage{geometry} 
+\usepackage{colortbl}
+
+% Define a custom dark box for commands/code
+\newtcolorbox{codebox}{
+    colback=black!85,
+    coltext=white,
+    colframe=black!85,
+    boxsep=5pt,
+    arc=4pt,
+    left=6pt, right=6pt, top=6pt, bottom=6pt,
+    fontupper=\ttfamily\small
+}
+
+% Typography and layout
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{subcaption}
+\geometry{
+    a4paper,
+    left=3cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=2.5cm
+}
+
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\addbibresource{references.bib}
+
+% Font
+\usepackage{lmodern}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{15pt}
+
+% Formatting tools
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{url, hyperref}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{pdfpages}
+
+% Spacing
+\onehalfspacing
+
+% Chapter formatting
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+
+\titleformat{name=\chapter,numberless}[block]
+  {\normalfont\huge\bfseries\centering}{}{0pt}{\Huge}
+
+% Section and subsection formatting
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{3ex plus 1ex minus .2ex}{2ex plus .2ex}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{2.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Table of contents config
+\renewcommand{\cftchappresnum}{}
+\renewcommand{\cftchapaftersnum}{}
+
+% Fix paragraph spacing
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{1.5em}
+
+\microtypesetup{protrusion=true}
+
+\usepackage{caption}
+\usepackage{float}
+
+% Title page variables - CUSTOMIZE THESE
+\newcommand{\thesistitle}{[Your Thesis Title Here]}
+\newcommand{\authorname}{[Your Full Name]}
+\newcommand{\authortitles}{}
+\newcommand{\authoremail}{email@stuba.sk}
+\newcommand{\studyprogram}{[Your Study Program]}
+\newcommand{\studyfield}{[Your Study Field]}
+\newcommand{\workplace}{[Institute Name], [Faculty Abbreviation], [University Name]}
+\newcommand{\universityName}{[University full Name]}
+\newcommand{\facultName}{[Faculty full Name]}
+\newcommand{\city}{[City Name]}
+\newcommand{\supervisor}{[Supervisor Title and Name]}
+\newcommand{\additionalsupervisor}{}
+\newcommand{\submissiondate}{[Month Year]}
+\newcommand{\evidencenumber}{[Evidence Number]}
+\renewcommand{\bibname}{References} 
+
+% Chapter formatting
+\titleformat{\chapter}
+  {\normalfont\Huge\bfseries\raggedright}
+  {\thechapter\quad}
+  {0pt}
+  {}
+
+% Section formatting
+\titleformat{\section}
+  {\normalfont\LARGE\bfseries\raggedright}
+  {\thesection\quad}
+  {0pt}
+  {}
+
+% Subsection formatting
+\titleformat{\subsection}
+  {\normalfont\Large\bfseries\raggedright}
+  {\thesubsection\quad}
+  {0pt}
+  {}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    
+    {\Large \universityName}\\[0.5cm]
+    {\Large \facultName}\\[1cm]
+    
+    {\large \evidencenumber}\\[2cm]
+    
+    {\large \authorname}\\[0.5cm]
+    
+    {\LARGE \textbf{\thesistitle}}\\[1cm]
+    
+    {\large Bachelor's Thesis}\\[10cm]
+    
+    \vfill
+    
+    \begin{flushleft}
+    \begin{tabular}{ll}
+    Supervisor: & \supervisor \\
+    \ifx\additionalsupervisor\empty\else
+    Additional supervisor: & \additionalsupervisor \\
+    \fi
+    \end{tabular}
+    \end{flushleft}
+    
+    \vspace{2cm}
+    \hfill {\large \submissiondate}
+    
+    \vfill
+    
+\end{titlepage}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\begin{center}
+\vspace*{1cm}
+{\Large [University Name]}\\[0.5cm]
+{\Large [Faculty Full Name]}\\[1cm]
+
+{\large \evidencenumber}\\[2cm]
+
+{\large \authorname}\\[0.5cm]
+
+{\LARGE \textbf{\thesistitle}}\\[1cm]
+
+{\large Bachelor's Thesis}\\[1cm]
+\end{center}
+\vfill
+
+\begin{flushleft}
+\begin{tabular}{ll}
+Study programme: & \studyprogram \\
+Study field: & \studyfield \\
+Workplace: & \workplace \\
+Supervisor: & \supervisor \\
+\ifx\additionalsupervisor\empty\else
+Additional supervisor: & \additionalsupervisor \\
+\fi
+\end{tabular}
+\end{flushleft}
+
+\vfill
+\vspace{2cm}
+\hfill {\large \submissiondate}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Assignment page
+\newpage
+\thispagestyle{empty}
+\begin{center}
+    \vspace*{3cm}
+    {\Large \textbf{ASSIGNMENT}}\\[2cm]
+    
+    {\large Insert the official thesis assignment from the university system here!}\\[1cm]
+    Go to AIS -> Portal studenta -> Zaverecna praca -> Zobrazit zadanie -> Download PDF
+    
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Declaration page
+\newpage
+\thispagestyle{empty}
+\vspace*{15cm}
+
+I declare that I have prepared this work independently, based on consultations with supervisor and using the referenced literature and materials. I commit to indicating any use of artificial intelligence tools.
+
+\vspace{3cm}
+
+In \city, \rule{3cm}{0.4pt} \hfill \rule{4cm}{0.4pt}\\
+\phantom{In [City], }date \hfill signature\\[0.5cm]
+\hfill \authorname
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Acknowledgments
+\newpage
+\thispagestyle{empty}
+\vspace*{15cm}
+\section*{Acknowledgments}
+
+[Optional acknowledgments text here]
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% English annotation
+\newpage
+\thispagestyle{empty}
+
+\begin{flushleft}
+{\large \textbf{Annotation}}\\[0.25cm]
+
+\universityName\\
+\facultName\\[0.5cm]
+
+Degree course: \studyprogram\\
+Author: \authorname\\
+Bachelor's Thesis: \thesistitle\\
+Supervisor: \supervisor\\
+\submissiondate\\[1cm]
+\end{flushleft}
+
+[Write your English annotation here]
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Slovak annotation
+\newpage
+\thispagestyle{empty}
+
+\begin{flushleft}
+{\large \textbf{Anotacia}}\\[0.25cm]
+
+\universityName\\
+\facultName\\[0.5cm]
+
+Study programme: \studyprogram\\
+Author: \authorname\\
+Bachelor's thesis: \thesistitle\\
+Supervisor: \supervisor\\
+\ifx\additionalsupervisor\empty\else
+Additional supervisor: \additionalsupervisor\\
+\fi
+\submissiondate\\[1cm]
+\end{flushleft}
+
+[Write your annotation here]
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Table of contents
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{11}
+\tableofcontents
+
+\newpage
+\pagestyle{plain}
+\listoffigures
+    
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\newpage
+\listoftables
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\newpage
+\chapter*{List of Abbreviations Used}
+\textbf{STU} - Slovak University of Technology \\
+    
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Main content starts here
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\chapter*{Technical~Abstract}
+\addcontentsline{toc}{chapter}{Technical Abstract}
+
+[Write your technical abstract here]
+
+\chapter*{Lay~Summary}
+\addcontentsline{toc}{chapter}{Lay Summary}
+
+[Write your lay summary here]
+
+\chapter{Introduction}
+
+This chapter begins the main part of the thesis.
+
+Example cite \cite{knuth1984}
+
+\chapter{Problem Statement and Solution}
+
+\section{Problem~Statement}
+
+[Describe the problem]
+
+\section{Technical~Literature~Review}
+
+[Literature review]
+
+\section{Solution~Overview}
+
+[Solution description]
+
+\section{Risk~Assessment}
+
+[Risk assessment]
+
+\section{Experimental~Reproducibility~and~Integration}
+
+[Reproducibility details]
+
+\section{Sustainability and Environmental Impact}
+
+[Sustainability considerations]
+
+\section{Employability}
+
+[Employability discussion]
+
+\section{Teamwork, Diversity and Inclusion}
+
+[Teamwork discussion]
+
+\chapter{Conclusions}
+
+[Conclusions]
+
+\phantomsection
+\chapter*{Resume}
+\addcontentsline{toc}{chapter}{Resume}
+\vspace{2em}
+
+[Slovak resume for English thesis]
+
+% Bibliography
+\phantomsection
+\printbibliography[title={References}, keyword=primary]
+\addcontentsline{toc}{chapter}{References}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Scientific Part
+\renewcommand{\thesection}{\Roman{section}}
+\titleformat{\section}
+  {\large\bfseries\spaceskip=0.5em}
+  {\thesection}
+  {1em}
+  {}
+  
+\titlespacing{\section}
+  {0pt}       
+  {0pt}
+  {0pt}
+
+\renewcommand{\thesubsection}{\Roman{subsection}}
+\titleformat{\subsection}
+  {\normalfont\bfseries\spaceskip=0.5em}
+  {\thesubsection}
+  {1em}
+  {}
+  
+\titlespacing{\subsection}
+  {0pt}       
+  {5pt}
+  {0pt}
+
+\renewcommand{\thesubsubsection}{\Roman{subsubsection}}
+\titleformat{\subsubsection}
+  {\small\bfseries\spaceskip=0.5em}
+  {\thesubsection}
+  {1em}
+  {}
+  
+\titlespacing{\subsubsection}
+  {0pt}       
+  {5pt}
+  {0pt}
+
+\setlength{\intextsep}{4pt}
+
+\centering
+\chapter*{\thesistitle}
+\addcontentsline{toc}{chapter}{Scientific Part}
+\authorname\\
+\facultName\\
+\universityName\\
+\city, Slovakia\\
+\authoremail\\
+\raggedright
+\thispagestyle{empty}
+
+\begin{multicols}{2}
+\footnotesize
+
+\phantomsection
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+[Scientific abstract]
+
+\setcounter{section}{0}
+\section{Introduction}
+[Introduction]
+Example cite \cite{ww1939} and \cite{ww1914}
+
+\section{Related Work}
+[Related work]
+
+\section{Methods}
+[Methods]
+
+\section{Software Architecture}
+[Architecture]
+
+\section{Results}
+[Results]
+
+\section{Discussion}
+[Discussion]
+
+\section{Conclusion}
+[Conclusion]
+
+\defbibheading{subbibliography}[\refname]{%
+\section*{#1}
+}
+
+\begingroup
+\footnotesize
+\printbibliography[
+  title={References},
+  keyword=secondary,
+  heading=subbibliography
+]
+\endgroup
+
+\addcontentsline{toc}{section}{References}
+
+\end{multicols}
+
+\newpage
+\chapter*{Use of AI}
+Here add you use of AI with format like: \\
+
+\textbf{Company: Model. What?} \\
+Example: OpenAI: ChatGPT-5. Assistance with document styling. 
+
+% Appendices
+\newpage
+\appendix
+\renewcommand{\thepage}{A-\arabic{page}}
+\setcounter{page}{1}
+
+\chapter{Supplementary Material}
+
+[Supplementary materials]
+
+\chapter{Technical Documentation}
+\renewcommand{\thepage}{B-\arabic{page}}
+\setcounter{page}{1}
+
+[Technical documentation]
+
+\chapter{User Guide}
+\renewcommand{\thepage}{C-\arabic{page}}
+\setcounter{page}{1}
+
+[User guide]
+
+\chapter{Work plan}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|p{10cm}|}
+        \hline
+        \textbf{Week} & \textbf{Planned activities} \\ \hline
+        1 & Step description \\ \hline
+        2 & .... \\ \hline
+    \end{tabular}
+    \caption{Work plan for the project}
+    \label{tab:work-plan}
+\end{table}
+
+\renewcommand{\thepage}{D-\arabic{page}}
+\setcounter{page}{1}
+
+\chapter{Content of the Electronic Media}
+\renewcommand{\thepage}{E-\arabic{page}}
+\setcounter{page}{1}
+
+\end{document}
