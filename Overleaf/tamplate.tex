@@ -1,14 +1,39 @@
-\documentclass[11pt,a4paper,oneside]{book}
+\documentclass[14pt,a4paper,oneside]{book}
 
 % Encoding and language
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
+\usepackage{svg}
+
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{threeparttable}
+
+\usepackage{longtable}
+\usepackage{xurl}     
+\usepackage{geometry} 
+\usepackage{colortbl}  %
+\usepackage[table]{xcolor}
+
+% Define a custom dark box for commands/code
+\newtcolorbox{codebox}{
+    colback=black!85,      % Dark background (85% black)
+    coltext=white,         % White text
+    colframe=black!85,     % Frame color
+    boxsep=5pt,
+    arc=4pt,
+    left=6pt, right=6pt, top=6pt, bottom=6pt,
+    fontupper=\ttfamily\small % Typewriter font
+}
 
 % Typography and layout
 \usepackage{microtype} % Helps fix badness issues automatically
 \usepackage{geometry}
 \usepackage{setspace}
+\usepackage{subcaption}
 \geometry{
     a4paper,
     left=3cm,
@@ -17,6 +42,9 @@
     bottom=2.5cm
 }
 
+\usepackage[backend=biber,style=iso-numeric]{biblatex}
+\addbibresource{references.bib}
+
 % Font
 \usepackage{lmodern} % More modern font than Computer Modern
 
@@ -24,7 +52,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[R]{\thepage}
+\fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{15pt}
 
@@ -33,9 +61,11 @@
 \usepackage{tocloft}
 \usepackage{graphicx}
 \usepackage{amsmath, amsfonts, amssymb}
-\usepackage{url, hyperref, cite}
+\usepackage{url, hyperref}
 \usepackage{enumitem}
 \usepackage{multicol}
+\usepackage{pdfpages}
+
 
 % Spacing
 \onehalfspacing
@@ -76,6 +106,7 @@
 \newcommand{\thesistitle}{[Your Thesis Title Here]}
 \newcommand{\authorname}{[Your Full Name]}
 \newcommand{\authortitles}{} % or other titles
+\newcommand{\authoremail}{email@stuba.sk}
 \newcommand{\studyprogram}{[Your Study Program]}
 \newcommand{\studyfield}{[Your Study Field]}
 \newcommand{\workplace}{[Institute Name], [Faculty Abbreviation], [University Name]}
@@ -142,8 +173,9 @@
     \end{tabular}
     \end{flushleft}
     
-    \vspace{1cm}
-    {\large \submissiondate}
+    
+    \vspace{2cm}
+    \hfill {\large \submissiondate}
     
     \vfill
     
@@ -153,7 +185,10 @@
 \mbox{}
 \newpage
 
-\centering
+%\centering
+\begin{center}
+    
+
 \vspace*{1cm}
 {\Large [University Name]}\\[0.5cm]
 {\Large [Faculty Full Name]}\\[1cm]
@@ -165,7 +200,7 @@
 {\LARGE \textbf{\thesistitle}}\\[1cm]
 
 {\large Bachelor's Thesis}\\[1cm]
-
+\end{center}
 \vfill
 
 \begin{flushleft}
@@ -182,7 +217,10 @@ Additional supervisor: & \additionalsupervisor \\
 
 \vfill
 
-{\large \submissiondate}\\[0.5cm]
+    
+\vspace{2cm}
+\hfill {\large \submissiondate}
+
 \newpage
 \thispagestyle{empty}
 \mbox{}
@@ -195,6 +233,7 @@ Additional supervisor: & \additionalsupervisor \\
     {\Large \textbf{ASSIGNMENT}}\\[2cm]
     
     {\large Insert the official thesis assignment from the university system here!}\\[1cm]
+    Go to AIS -> Portál študenta -> Záverečná práca -> Zobraziť zadanie -> Download PDF
     
 \end{center}
 
@@ -206,7 +245,8 @@ Additional supervisor: & \additionalsupervisor \\
 % Declaration page
 \newpage
 \thispagestyle{empty}
-\vspace*{5cm}
+\vspace*{15cm}
+
 
 I declare that I have prepared this work independently, based on consultations with supervisor and using the referenced literature and materials. I commit to indicating any use of artificial intelligence tools.
 
@@ -224,7 +264,7 @@ In \city, \rule{3cm}{0.4pt} \hfill \rule{4cm}{0.4pt}\\
 % Acknowledgments (optional)
 \newpage
 \thispagestyle{empty}
-\vspace*{3cm}
+\vspace*{15cm}
 \section*{Acknowledgments}
 
 [Optional acknowledgments text here - thank your supervisor, family, colleagues, or anyone who helped with your work]
@@ -288,16 +328,36 @@ Additional supervisor: \additionalsupervisor\\
 
 % Table of contents
 \newpage
+\pagenumbering{roman}
 \setcounter{page}{11} % Adjust based on your front matter pages
 \tableofcontents
 
 % Optional lists (comment if unneeded)
  \newpage
+ \pagestyle{plain}
  \listoffigures
- 
+    
+ \newpage
+ \thispagestyle{empty}
+ \mbox{}
+
  \newpage
  \listoftables
 
+ \newpage
+ \thispagestyle{empty}
+ \mbox{}
+
+
+\newpage
+\chapter*{List of Abbreviations Used}
+    \textbf{STU} - Slovak University of Technology \\
+    
+ \newpage
+ \thispagestyle{empty}
+ \mbox{}
+
+ 
 % Main content starts here
 \newpage
 \pagenumbering{arabic}
@@ -341,6 +401,7 @@ This chapter begins the main part of the thesis. In the introduction, provide an
 - Overall project intention
 - Structure of the thesis]
 
+Example cite \cite{knuth1984}
 
 \chapter{Problem Statement and Solution } % (35 points total)
 
@@ -473,35 +534,85 @@ For each risk, provide mitigation strategies and contingency plans]
 - Personal and professional growth through the project]
 
 % Resume (ONLY IF YOU choose English thesis)
-\chapter{Resume}
+\phantomsection
+\chapter*{Resume}
+\addcontentsline{toc}{chapter}{Resume}
+\vspace{2em}
 Každá práca odovzdaná v anglickom jazyku musí obsahovať resumé v slovenskom jazyku v rozsahu spravidla 10 percent rozsahu záverečnej práce. Resumé je v práci uvedené ako posledná časť dokumentu.
 
 
 
 
-
-
-% Bibliography minimal 30 references and up to 70 allowed
-\addcontentsline{toc}{chapter}{\bibname}
-\bibliographystyle{ieeetr}
-\bibliography{references}
-
+% Bibliography part
+\phantomsection
+\printbibliography[title={References}, keyword=primary]
+\addcontentsline{toc}{chapter}{References}
 
 
 
+\newpage
+\thispagestyle{empty}
+\mbox{}
 
 
 
+% Scientific Part (50 points): 3500 words, up to 7 figures, one of two common layouts (abstract, lay abstract, introduction, results,
+% discussion, methods, supplementary material and data) or (abstract, lay abstract, introduction, methods, results, discussion, supplementary
+% material and data). 
+% Students are expected to demonstrate their ability to communicate complex problem solutions effectively to a technical audience. The use of AI-generated content is not allowed in this part.
+
+\renewcommand{\thesection}{\Roman{section}}
+\titleformat{\section}
+  {\large\bfseries\spaceskip=0.5em}
+  {\thesection}
+  {1em}
+  {}
+  
+\titlespacing{\section}
+  {0pt}       
+  {0pt}
+  {0pt}
+
+\renewcommand{\thesubsection}{\Roman{subsection}}
+\titleformat{\subsection}
+  {\normalfont\bfseries\spaceskip=0.5em}
+  {\thesubsection}
+  {1em}
+  {}
+  
+\titlespacing{\subsection}
+  {0pt}       
+  {5pt}
+  {0pt}
 
 
+\renewcommand{\thesubsubsection}{\Roman{subsubsection}}
+\titleformat{\subsubsection}
+  {\small\bfseries\spaceskip=0.5em}
+  {\thesubsection}
+  {1em}
+  {}
+  
+\titlespacing{\subsubsection}
+  {0pt}       
+  {5pt}
+  {0pt}
+
+\setlength{\intextsep}{4pt}
 
 
+\centering
+\chapter*{\thesistitle}
+\addcontentsline{toc}{chapter}{Scientific Part}
+\authorname\\
+\facultName\\
+\universityName\\
+\city, Slovakia\\
+\authoremail\\
+\raggedright
+\thispagestyle{empty}
 
 
-
-
-
-\chapter{Scientific Part}
 % Scientific Part (50 points): 3500 words, up to 7 figures, one of two common layouts (abstract, lay abstract, introduction, results,
 % discussion, methods, supplementary material and data) or (abstract, lay abstract, introduction, methods, results, discussion, supplementary
 % material and data).
@@ -512,12 +623,16 @@ Každá práca odovzdaná v anglickom jazyku musí obsahovať resumé v slovensk
 \footnotesize % Smaller but readable font
 
 % Abstract
+\phantomsection
 \section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
 [Write a technical abstract for the scientific part - approximately 150-200 words summarizing the scientific contribution, methodology, key results, and implications]
 
 % Introduction
+\setcounter{section}{0}
 \section{Introduction}
 [Provide scientific background, research questions, hypotheses, and objectives. Set the context for the technical work and explain the scientific significance]
+Example cite \cite{ww1939} and \cite{ww1914}
 
 % Related Work
 \section{Related Work}
@@ -543,10 +658,40 @@ Každá práca odovzdaná v anglickom jazyku musí obsahovať resumé v slovensk
 \section{Conclusion}
 [Summarize main scientific contributions, practical implications, and suggest future research directions]
 
-\section{References}
-[Include scientific references using proper citation format - this should complement the main bibliography]
+% References
+\defbibheading{subbibliography}[\refname]{%
+\section*{#1}
+}
+
+\begingroup
+\footnotesize
+\printbibliography[
+  title={References},
+  keyword=secondary,
+  heading=subbibliography
+]
+\endgroup
+
+\addcontentsline{toc}{section}{References}
 
 \end{multicols}
+
+
+
+\newpage
+\chapter*{Use of AI}
+Here add you use of AI with format like: \\
+
+
+
+\textbf{Company: Model. What?} \\
+Example:
+OpenAI: ChatGPT-5. Assistance with document styling. 
+
+
+
+
+
 
 % Appendices
 \newpage
@@ -576,11 +721,7 @@ Attention: This section must be in your thesis
 - Technical specifications
 - Raw data tables]
 
-% List of Figures (must be included if figures are present)
-\listoffigures
 
-% List of Tables (must be included if tables are present)
-\listoftables
 
 % Additional appendices as needed can be added like:
 \chapter{Technical Documentation}
@@ -589,21 +730,38 @@ Attention: This section must be in your thesis
 \setcounter{page}{1}
 
 
-% Not necessary but if applicable
+
+
 \chapter{User Guide}
 [If applicable, include user guides, installation instructions, or operation manuals]
 \renewcommand{\thepage}{C-\arabic{page}}
 \setcounter{page}{1}
 
 
-% Attention Work plan and Content of the electronic media you MUST include ONLY if you have BP1+BP2 in ZS
+
+
 \chapter{Work plan}
-[for BP1+BP2]
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|p{10cm}|}
+        \hline
+        \textbf{Week} & \textbf{Planned activities} \\ \hline
+        1 & Step description \\ \hline
+        2 & .... \\ \hline
+    \end{tabular}
+    \caption{Work plan for the project}
+    \label{tab:work-plan}
+\end{table}
+
+Comments here!
+
 \renewcommand{\thepage}{D-\arabic{page}}
 \setcounter{page}{1}
 
-\chapter{Content of the electronic media}
-[for BP1+BP2]
+
+
+\chapter{Content of the Electronic Media}
 \renewcommand{\thepage}{E-\arabic{page}}
 \setcounter{page}{1}
 
