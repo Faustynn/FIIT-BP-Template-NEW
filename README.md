@@ -14,3 +14,14 @@ Terms of use:
 Before using, please support the repository with a star on GitHub — this will help spread the template and motivate its further development.
 
 ⚠️ Important: using the template without fulfilling the above condition may be considered a violation of intellectual property rights. In extreme cases, I reserve the right to contact your educational institution with a corresponding notification.
+
+
+
+\
+You can see my results from the opponent and the host below:
+
+All items were given an A grade, which speaks to the quality of this template ;)
+![Oponent](examples/oponent.png)
+![Supervisor](examples/veduci.png)
+
+**Note:** A presentation template for the commission defense will be available here shortly. It will be uploaded immediately following my successful defense.
